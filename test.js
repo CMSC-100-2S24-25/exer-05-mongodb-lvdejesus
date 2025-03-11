@@ -52,13 +52,6 @@ needle.post('http://localhost:3000/save-student', students[0], printResult);
 // Test /update
 needle.post('http://localhost:3000/update', { fname: "Suu", newFname: "Su" }, printResult);
 
-// Test /remove-all-user
-needle.post('http://localhost:3000/remove-all-user', {}, printResult);
-
-for (let i = 0; i < students.length; i++) {
-  needle.post('http://localhost:3000/save-student', students[i], printResult);
-}
-
 // Test /remove-user
 needle.post('http://localhost:3000/remove-user', { stdnum: "202671239" }, printResult);
 
@@ -67,3 +60,6 @@ needle.get(`http://localhost:3000/user?stdnum=202511235`, printResult);
 
 // Test /members
 needle.get('http://localhost:3000/members', printResult);
+
+// Test /remove-all-user
+needle.post('http://localhost:3000/remove-all-user', {}, printResult);

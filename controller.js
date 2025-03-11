@@ -14,8 +14,7 @@ export const saveStudent = async (req, res) => {
     return;
   }
 
-  const foundStudent = await Student.findOne({ stdnum });
-  if (foundStudent != null) {
+  if (await Student.findOne({ stdnum }) != null) {
     // student with stdnum already exists
     res.send({ inserted: false });
     return;

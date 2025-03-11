@@ -49,11 +49,24 @@ for (let i = 0; i < students.length; i++) {
 // Test /save-student if stdnum is the same
 needle.post('http://localhost:3000/save-student', students[0], printResult);
 
+// Test /save-student if the input is not complete
+needle.post('http://localhost:3000/save-student', {
+  stdnum: "202510039",
+  fname: "Erisa",
+  age: 18,
+}, printResult);
+
 // Test /update
 needle.post('http://localhost:3000/update', { fname: "Suu", newFname: "Su" }, printResult);
 
+// Test /update if the student does not exist
+needle.post('http://localhost:3000/update', { fname: "Riri", newFname: "Su" }, printResult);
+
 // Test /remove-user
 needle.post('http://localhost:3000/remove-user', { stdnum: "202671239" }, printResult);
+
+// Test /remove-user if the student does not exist
+needle.post('http://localhost:3000/remove-user', { stdnum: "202309283" }, printResult);
 
 // Test /user
 needle.get(`http://localhost:3000/user?stdnum=202511235`, printResult);

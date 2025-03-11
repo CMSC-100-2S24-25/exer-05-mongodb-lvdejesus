@@ -29,8 +29,8 @@ export const saveStudent = async (req, res) => {
 }
 
 export const update = (req, res) => {
-  const { fname, newFname } = req.body;
-  Student.updateOne({ fname }, { $set: { fname: newFname } }).then(() => {
+  const { fname, lname } = req.body;
+  Student.updateOne({ fname }, { $set: { lname } }).then(() => {
     res.send({ updated: true });
   }).catch(() => {
     res.send({ updated: false });

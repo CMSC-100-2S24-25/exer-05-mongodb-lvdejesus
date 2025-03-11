@@ -63,11 +63,11 @@ needle.post('http://localhost:3000/save-student', {
 await sleep(50);
 
 // Test /update
-needle.post('http://localhost:3000/update', { fname: "Suu", newFname: "Su" }, printResult(`update`));
+needle.post('http://localhost:3000/update', { fname: "Mikuru", lname: "Hositani" }, printResult(`update`));
 await sleep(50);
 
 // Test /update if the student does not exist
-needle.post('http://localhost:3000/update', { fname: "Riri", newFname: "Su" }, printResult(`update-not-exist`));
+needle.post('http://localhost:3000/update', { fname: "Riri", lname: "Haruno" }, printResult(`update-not-exist`));
 await sleep(50);
 
 // Test /remove-user

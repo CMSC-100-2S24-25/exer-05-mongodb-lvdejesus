@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/CMSC-100-2S24-25/exer-05-mongodb-lvdejesus/issues"
   },
-  "homepage": "https://github.com/CMSC-100-2S24-25/exer-05-mongodb-lvdejesus#readme"
+  "homepage": "https://github.com/CMSC-100-2S24-25/exer-05-mongodb-lvdejesus#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1",
+    "needle": "^3.3.1"
+  }
 }

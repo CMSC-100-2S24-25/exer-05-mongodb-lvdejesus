@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/CMSC-100-2S24-25/exer-05-mongodb-lvdejesus.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -7,15 +7,19 @@ const Student = mongoose.model("Student", {
   age: Number,
 }, 'studentData');
 
-export const saveStudent = (req, res) => {
+export const saveStudent = async (req, res) => {
   const { stdnum, fname, lname, age } = req.body;
   if (stdnum == null || fname == null || lname == null || age == null) {
     res.send({ inserted: false });
     return;
   }
 
-  // const foundStudent = Student.findOne({ stdnum });
-  // console.log(foundStudent);
+  const foundStudent = await Student.findOne({ stdnum });
+  if (foundStudent != null) {
+    // student with stdnum already exists
+    res.send({ inserted: false });
+    return;
+  }
 
   const student = new Student({ stdnum, fname, lname, age });
   student.save().then(() => {

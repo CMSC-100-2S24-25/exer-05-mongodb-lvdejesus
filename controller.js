@@ -28,8 +28,15 @@ export const saveStudent = async (req, res) => {
   })
 }
 
-export const update = (req, res) => {
+export const update = async (req, res) => {
   const { fname, lname } = req.body;
+
+  if (await Student.findOne({ fname }) == null) {
+    // student with fname does not exist
+    res.send({ updated: false });
+    return;
+  }
+
   Student.updateOne({ fname }, { $set: { lname } }).then(() => {
     res.send({ updated: true });
   }).catch(() => {

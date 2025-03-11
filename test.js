@@ -42,13 +42,17 @@ const printResult = (name) => {
   };
 }
 
+const sleep = (duration) => new Promise(r => setTimeout(r, duration))
+
 // Test /save-student
 for (let i = 0; i < students.length; i++) {
   needle.post('http://localhost:3000/save-student', students[i], printResult(`save-${i}`));
+  await sleep(50);
 }
 
 // Test /save-student if stdnum is the same
 needle.post('http://localhost:3000/save-student', students[0], printResult(`save-same`));
+await sleep(50);
 
 // Test /save-student if the input is not complete
 needle.post('http://localhost:3000/save-student', {
@@ -56,24 +60,31 @@ needle.post('http://localhost:3000/save-student', {
   fname: "Erisa",
   age: 18,
 }, printResult(`save-incomplete`));
+await sleep(50);
 
 // Test /update
 needle.post('http://localhost:3000/update', { fname: "Suu", newFname: "Su" }, printResult(`update`));
+await sleep(50);
 
 // Test /update if the student does not exist
 needle.post('http://localhost:3000/update', { fname: "Riri", newFname: "Su" }, printResult(`update-not-exist`));
+await sleep(50);
 
 // Test /remove-user
 needle.post('http://localhost:3000/remove-user', { stdnum: "202671239" }, printResult(`remove`));
+await sleep(50);
 
 // Test /remove-user if the student does not exist
 needle.post('http://localhost:3000/remove-user', { stdnum: "202309283" }, printResult(`remove-not-exist`));
+await sleep(50);
 
 // Test /user
 needle.get(`http://localhost:3000/user?stdnum=202511235`, printResult(`user`));
+await sleep(50);
 
 // Test /members
 needle.get('http://localhost:3000/members', printResult(`members`));
+await sleep(50);
 
 // Test /remove-all-user
 needle.post('http://localhost:3000/remove-all-user', {}, printResult(`remove-all-user`));

@@ -37,12 +37,19 @@ export const update = (req, res) => {
   })
 }
 
-export const removeUser = (req, res) => {
+export const removeUser = async (req, res) => {
   const { stdnum } = req.body;
+
+  if (await Student.findOne({ stdnum }) == null) {
+    // student with stdnum already exists
+    res.send({ deleted: false });
+    return;
+  }
+
   Student.deleteOne({ stdnum }).then(() => {
-    res.send({ updated: true });
+    res.send({ deleted: true });
   }).catch(() => {
-    res.send({ updated: false });
+    res.send({ deleted: false });
   })
 }
 

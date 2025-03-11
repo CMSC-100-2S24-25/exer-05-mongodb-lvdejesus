@@ -31,6 +31,12 @@ const students = [
     lname: "Momiyama",
     age: 20,
   },
+  {
+    stdnum: "8051495845",
+    fname: "Mary Jane",
+    lname: "Watson",
+    age: 22,
+  },
 ]
 
 const printResult = (name) => {
@@ -63,23 +69,23 @@ needle.post('http://localhost:3000/save-student', {
 await sleep(50);
 
 // Test /update
-needle.post('http://localhost:3000/update', { fname: "Mikuru", lname: "Hositani" }, printResult(`update`));
+needle.post('http://localhost:3000/update', { fname: "Mary Jane", lname: "Parker" }, printResult(`update`));
 await sleep(50);
 
 // Test /update if the student does not exist
 needle.post('http://localhost:3000/update', { fname: "Riri", lname: "Haruno" }, printResult(`update-not-exist`));
 await sleep(50);
 
+// Test /user
+needle.get(`http://localhost:3000/user?stdnum=8051495845`, printResult(`user`));
+await sleep(50);
+
 // Test /remove-user
-needle.post('http://localhost:3000/remove-user', { stdnum: "202671239" }, printResult(`remove`));
+needle.post('http://localhost:3000/remove-user', { stdnum: "8051495845" }, printResult(`remove`));
 await sleep(50);
 
 // Test /remove-user if the student does not exist
 needle.post('http://localhost:3000/remove-user', { stdnum: "202309283" }, printResult(`remove-not-exist`));
-await sleep(50);
-
-// Test /user
-needle.get(`http://localhost:3000/user?stdnum=202511235`, printResult(`user`));
 await sleep(50);
 
 // Test /members

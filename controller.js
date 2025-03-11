@@ -31,14 +31,8 @@ export const saveStudent = async (req, res) => {
 export const update = async (req, res) => {
   const { fname, lname } = req.body;
 
-  if (await Student.findOne({ fname }) == null) {
-    // student with fname does not exist
-    res.send({ updated: false });
-    return;
-  }
-
-  Student.updateOne({ fname }, { $set: { lname } }).then(() => {
-    res.send({ updated: true });
+  Student.updateOne({ fname }, { $set: { lname } }).then((r) => {
+    res.send({ updated: r.modifiedCount > 0 });
   }).catch(() => {
     res.send({ updated: false });
   })
@@ -47,14 +41,8 @@ export const update = async (req, res) => {
 export const removeUser = async (req, res) => {
   const { stdnum } = req.body;
 
-  if (await Student.findOne({ stdnum }) == null) {
-    // student with stdnum already exists
-    res.send({ deleted: false });
-    return;
-  }
-
-  Student.deleteOne({ stdnum }).then(() => {
-    res.send({ deleted: true });
+  Student.deleteOne({ stdnum }).then((e) => {
+    res.send({ deleted: e.deletedCount > 0 });
   }).catch(() => {
     res.send({ deleted: false });
   })
